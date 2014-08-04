@@ -115,13 +115,13 @@
   <macro name="access">
     <choose>
       <if variable="DOI">
-        <text variable="DOI" prefix="`doi &lt;http://dx.doi.org/" suffix="`__. "/>
+        <text variable="DOI" prefix="`DOI &lt;http://dx.doi.org/" suffix="&gt;`__. "/>
       </if>
       <else/>
     </choose>
     <choose>
       <if match="any" variable="URL">
-        <text variable="URL" prefix="`online &lt;" suffix="&gt;`__. "/>
+        <text variable="URL" prefix="`Online &lt;" suffix="&gt;`__. "/>
       </if>
     </choose>
   </macro>
