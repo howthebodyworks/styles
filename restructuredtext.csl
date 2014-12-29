@@ -429,7 +429,7 @@
       <key macro="title"/>
     </sort>
     <layout>
-      <group prefix="  * " suffix=".">
+      <group prefix="* " suffix=".">
         <group delimiter=". ">
           <text macro="author"/>
           <text macro="issued"/>
