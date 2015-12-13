@@ -35,7 +35,7 @@
     <category citation-format="author-date"/>
     <category field="generic-base"/>
     <summary>A style suitable for restructuredtext markup using internal link targets . Based on the APA style, on the assumption that ReST is used for no journals whatever, so we can ignore some details.</summary>
-    <updated>2015-12-13T11:55:06+00:00</updated>
+    <updated>2015-12-13T13:34:22+00:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xml:lang="en">
@@ -133,7 +133,7 @@
         <choose>
           <if variable="version">
             <group delimiter=" ">
-              <text variable="title"/>
+              <text variable="title" strip-periods="true"/>
               <group delimiter=" " prefix="(" suffix=")">
                 <text term="version" text-case="capitalize-first"/>
                 <text variable="version"/>
@@ -445,11 +445,14 @@
               <text value="`\" strip-periods="true" display="left-margin"/>
             </if>
           </choose>
-          <text macro="title" prefix=" "/>
+          <text macro="title" strip-periods="true" prefix=" "/>
           <choose>
             <if match="any" variable="URL">
               <text variable="URL" prefix=" &lt;" suffix="&gt;`__. "/>
             </if>
+            <else>
+              <text value=". "/>
+            </else>
           </choose>
         </group>
         <group suffix=".">
@@ -464,7 +467,6 @@
         <text macro="access" prefix=" "/>
         <text value=" " display="block"/>
       </group>
-      <text value=" " display="block"/>
     </layout>
   </bibliography>
 </style>
