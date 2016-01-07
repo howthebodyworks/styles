@@ -35,7 +35,7 @@
     <category citation-format="author-date"/>
     <category field="generic-base"/>
     <summary>A style suitable for restructuredtext markup using internal link targets . Based on the APA style, on the assumption that ReST is used for no journals whatever, so we can ignore some details.</summary>
-    <updated>2015-12-13T13:44:25+00:00</updated>
+    <updated>2016-01-07T00:03:26+00:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xml:lang="en">
@@ -428,7 +428,7 @@
       <key macro="title"/>
     </sort>
     <layout>
-      <text variable="citation-label" strip-periods="true" display="block" prefix="_`" suffix="`: "/>
+      <text variable="citation-label" strip-periods="true" display="block" prefix="_`" suffix="` "/>
       <group display="indent">
         <group delimiter=". ">
           <text macro="author"/>
