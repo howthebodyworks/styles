@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0" demote-non-dropping-particle="sort-only" default-locale="en-GB">
+<style class="in-text" version="1.0" page-range-format="minimal" demote-non-dropping-particle="sort-only" default-locale="en-GB" xmlns="http://purl.org/net/xbiblio/csl">
   <info>
-    <title>Harvard - Cite Them Right 9th edition</title>
-    <id>http://www.zotero.org/styles/harvard-cite-them-right</id>
-    <link href="http://www.zotero.org/styles/harvard-cite-them-right" rel="self"/>
-    <link href="http://www.zotero.org/styles/harvard-university-of-greenwich" rel="template"/>
-    <link href="http://www.uel.ac.uk/lls/support/harvard/" rel="documentation"/>
+    <title>Development Policy Review</title>
+    <id>http://www.zotero.org/styles/development-policy-review</id>
+    <link rel="self" href="http://www.zotero.org/styles/development-policy-review"/>
+    <link href="http://www.zotero.org/styles/harvard-cite-them-right" rel="template"/>
+    <link href="http://onlinelibrary.wiley.com/journal/10.1111/%28ISSN%291467-7679/homepage/ForAuthors.html" rel="documentation"/>
     <author>
-      <name>Sebastian Karcher</name>
+      <name>Philipp Zumstein</name>
+      <uri>https://github.com/zuphilip</uri>
     </author>
     <category citation-format="author-date"/>
-    <category field="generic-base"/>
-    <summary>Harvard according to Cite Them Right</summary>
-    <updated>2013-08-30T10:08:32+00:00</updated>
+    <category field="social_science"/>
+    <issn>0950-6764</issn>
+    <eissn>1467-7679</eissn>
+    <updated>2015-12-19T11:49:17+00:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xml:lang="en-GB">
@@ -34,7 +36,7 @@
         <choose>
           <if variable="container-author" match="none">
             <names variable="editor translator" delimiter=", ">
-              <name and="text" initialize-with=". " delimiter=", " sort-separator=", " name-as-sort-order="all"/>
+              <name and="text" initialize-with=". "/>
               <label form="short" prefix=" (" suffix=")"/>
             </names>
           </if>
@@ -60,7 +62,7 @@
   </macro>
   <macro name="author">
     <names variable="author">
-      <name and="text" delimiter-precedes-last="never" initialize-with=". " name-as-sort-order="all"/>
+      <name delimiter="; " and="text" delimiter-precedes-last="never" initialize-with=". " name-as-sort-order="all"/>
       <label form="short" prefix=" (" suffix=")"/>
       <et-al font-style="italic"/>
       <substitute>
@@ -80,7 +82,7 @@
   <macro name="author-short">
     <names variable="author">
       <name form="short" and="text" delimiter=", " delimiter-precedes-last="never" initialize-with=". "/>
-      <et-al font-style="italic"/>
+      <et-al font-style="normal"/>
       <substitute>
         <names variable="editor"/>
         <names variable="translator"/>
@@ -129,7 +131,7 @@
       <if type="bill book graphic legal_case legislation motion_picture report song thesis webpage" match="any">
         <group delimiter=". ">
           <group delimiter=" ">
-            <text variable="title" font-style="italic"/>
+            <text variable="title" text-case="title" font-style="italic"/>
             <text macro="number-volumes"/>
           </group>
           <text macro="edition"/>
@@ -195,34 +197,6 @@
       </else>
     </choose>
   </macro>
-  <macro name="locator">
-    <choose>
-      <if type="article-journal">
-        <text variable="volume"/>
-        <text variable="issue" prefix="(" suffix=")"/>
-      </if>
-    </choose>
-  </macro>
-  <macro name="published-date">
-    <choose>
-      <if type="article-newspaper article-magazine post-weblog speech" match="any">
-        <date variable="issued">
-          <date-part name="day" suffix=" "/>
-          <date-part name="month" form="long"/>
-        </date>
-      </if>
-    </choose>
-  </macro>
-  <macro name="pages">
-    <choose>
-      <if type="chapter paper-conference article-journal article article-magazine article-newspaper book review review-book report" match="any">
-        <group delimiter=" ">
-          <label variable="page" form="short"/>
-          <text variable="page"/>
-        </group>
-      </if>
-    </choose>
-  </macro>
   <macro name="container-title">
     <choose>
       <if variable="container-title">
@@ -253,20 +227,24 @@
       </if>
     </choose>
   </macro>
-  <citation et-al-min="4" et-al-use-first="1" disambiguate-add-year-suffix="true" disambiguate-add-names="true" disambiguate-add-givenname="true" collapse="year">
+  <citation et-al-min="3" et-al-use-first="1" disambiguate-add-names="true" disambiguate-add-givenname="true" disambiguate-add-year-suffix="true" collapse="year">
     <sort>
       <key macro="year-date"/>
     </sort>
     <layout prefix="(" suffix=")" delimiter="; ">
-      <group delimiter=", ">
-        <group delimiter=", ">
-          <text macro="author-short"/>
-          <text macro="year-date"/>
-        </group>
-        <group>
-          <label variable="locator" form="short" suffix=" "/>
-          <text variable="locator"/>
-        </group>
+      <group delimiter=": ">
+        <choose>
+          <if match="any" position="ibid">
+            <text term="ibid"/>
+          </if>
+          <else>
+            <group delimiter=", ">
+              <text macro="author-short"/>
+              <text macro="year-date"/>
+            </group>
+          </else>
+        </choose>
+        <text variable="locator"/>
       </group>
     </layout>
   </citation>
@@ -293,11 +271,26 @@
         <text macro="secondary-contributors"/>
         <text macro="publisher"/>
       </group>
-      <group delimiter=", " prefix=", ">
-        <text macro="locator"/>
-        <text macro="published-date"/>
-        <text macro="pages"/>
-      </group>
+      <choose>
+        <if type="article-journal">
+          <group delimiter=": " prefix=" ">
+            <group>
+              <text variable="volume"/>
+              <text variable="issue" prefix="(" suffix=")"/>
+            </group>
+            <text variable="page"/>
+          </group>
+        </if>
+        <else-if type="article-newspaper article-magazine post-weblog speech" match="any">
+          <group delimiter=", " prefix=", ">
+            <date variable="issued">
+              <date-part name="day" suffix=" "/>
+              <date-part name="month" form="long"/>
+            </date>
+            <text variable="page"/>
+          </group>
+        </else-if>
+      </choose>
       <text macro="access" prefix=". "/>
     </layout>
   </bibliography>
