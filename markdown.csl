@@ -34,8 +34,8 @@
     </contributor>
     <category citation-format="author-date"/>
     <category field="generic-base"/>
-    <summary>A style suitable for markdown using internal link targets . Based on the APA style, on the assumption that ReST is used for no journals whatever, so we can ignore some details.</summary>
-    <updated>2017-01-14T10:01:24+00:00</updated>
+    <summary>A style suitable for markdown using internal link targets . On the assumption that Markdown is not used by journals, this meets no journal standards.</summary>
+    <updated>2017-08-01T01:36:31+00:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xml:lang="en">
@@ -50,45 +50,6 @@
       </term>
     </terms>
   </locale>
-  <macro name="container-contributors">
-    <choose>
-      <if type="chapter paper-conference" match="any">
-        <names variable="editor translator container-author" delimiter=", " suffix=", ">
-          <name and="symbol" initialize-with=". " delimiter=", "/>
-          <label form="short" prefix=" (" text-case="title" suffix=")"/>
-        </names>
-      </if>
-    </choose>
-  </macro>
-  <macro name="secondary-contributors">
-    <choose>
-      <if type="article-journal chapter paper-conference" match="none">
-        <names variable="translator editor container-author" delimiter=", " prefix=" (" suffix=")">
-          <name and="symbol" initialize-with=". " delimiter=", "/>
-          <label form="short" prefix=", " text-case="title"/>
-        </names>
-      </if>
-    </choose>
-  </macro>
-  <macro name="author">
-    <names variable="author" display="indent" prefix="  ">
-      <name name-as-sort-order="all" and="symbol" sort-separator=", " initialize-with=". " delimiter=", " delimiter-precedes-last="always"/>
-      <label form="short" prefix=" (" suffix=")" text-case="capitalize-first"/>
-      <substitute>
-        <names variable="editor"/>
-        <names variable="translator"/>
-        <choose>
-          <if type="report">
-            <text variable="publisher"/>
-            <text macro="title"/>
-          </if>
-          <else>
-            <text macro="title"/>
-          </else>
-        </choose>
-      </substitute>
-    </names>
-  </macro>
   <macro name="author-short">
     <names variable="author">
       <name form="short" and="symbol" delimiter=", " initialize-with=". "/>
@@ -190,32 +151,6 @@
       </else>
     </choose>
   </macro>
-  <macro name="event">
-    <choose>
-      <if variable="container-title" match="none">
-        <choose>
-          <if variable="event">
-            <choose>
-              <if variable="genre" match="none">
-                <text term="presented at" text-case="capitalize-first" suffix=" "/>
-                <text variable="event"/>
-              </if>
-              <else>
-                <group delimiter=" ">
-                  <text variable="genre" text-case="capitalize-first"/>
-                  <text term="presented at"/>
-                  <text variable="event"/>
-                </group>
-              </else>
-            </choose>
-          </if>
-          <else-if type="speech">
-            <text variable="genre" text-case="capitalize-first"/>
-          </else-if>
-        </choose>
-      </if>
-    </choose>
-  </macro>
   <macro name="issued">
     <choose>
       <if type="bill legal_case legislation" match="none">
@@ -246,22 +181,6 @@
       </if>
     </choose>
   </macro>
-  <macro name="issued-sort">
-    <choose>
-      <if type="article-journal bill book chapter graphic legal_case legislation motion_picture paper-conference report song" match="none">
-        <date variable="issued">
-          <date-part name="year"/>
-          <date-part name="month"/>
-          <date-part name="day"/>
-        </date>
-      </if>
-      <else>
-        <date variable="issued">
-          <date-part name="year"/>
-        </date>
-      </else>
-    </choose>
-  </macro>
   <macro name="issued-year">
     <choose>
       <if variable="issued">
@@ -273,19 +192,6 @@
       <else>
         <text term="no date" form="short"/>
         <text variable="year-suffix" prefix="-"/>
-      </else>
-    </choose>
-  </macro>
-  <macro name="edition">
-    <choose>
-      <if is-numeric="edition">
-        <group delimiter=" ">
-          <number variable="edition" form="ordinal"/>
-          <text term="edition" form="short"/>
-        </group>
-      </if>
-      <else>
-        <text variable="edition" suffix="."/>
       </else>
     </choose>
   </macro>
@@ -336,21 +242,8 @@
       </else-if>
     </choose>
   </macro>
-  <macro name="citation-locator">
-    <group>
-      <choose>
-        <if locator="chapter">
-          <label variable="locator" form="long" text-case="capitalize-first"/>
-        </if>
-        <else>
-          <label variable="locator" form="short"/>
-        </else>
-      </choose>
-      <text variable="locator" prefix=" "/>
-    </group>
-  </macro>
   <macro name="container">
-    <group>
+    <group prefix=" ">
       <choose>
         <if type="chapter paper-conference entry-encyclopedia" match="any">
           <text term="in" text-case="capitalize-first" suffix=" "/>
@@ -370,47 +263,6 @@
         <text variable="container-title" font-style="italic"/>
       </else-if>
     </choose>
-  </macro>
-  <macro name="legal-cites">
-    <choose>
-      <if type="bill legal_case legislation" match="any">
-        <group delimiter=" " prefix=", ">
-          <choose>
-            <if variable="container-title">
-              <text variable="volume"/>
-              <text variable="container-title"/>
-              <group delimiter=" ">
-                <text term="section" form="symbol"/>
-                <text variable="section"/>
-              </group>
-              <text variable="page"/>
-            </if>
-            <else>
-              <choose>
-                <if type="legal_case">
-                  <text variable="number" prefix="No. "/>
-                </if>
-                <else>
-                  <text variable="number" prefix="Pub. L. No. "/>
-                  <group delimiter=" ">
-                    <text term="section" form="symbol"/>
-                    <text variable="section"/>
-                  </group>
-                </else>
-              </choose>
-            </else>
-          </choose>
-        </group>
-      </if>
-    </choose>
-  </macro>
-  <macro name="author-min">
-    <names variable="author">
-      <name form="short" delimiter="" et-al-min="1" et-al-use-first="1" initialize="false"/>
-    </names>
-  </macro>
-  <macro name="title-min">
-    <text macro="title" strip-periods="true"/>
   </macro>
   <citation et-al-min="6" et-al-use-first="1" et-al-subsequent-min="3" et-al-subsequent-use-first="1" disambiguate-add-year-suffix="true" disambiguate-add-names="true" disambiguate-add-givenname="true" collapse="year" givenname-disambiguation-rule="primary-name">
     <sort>
