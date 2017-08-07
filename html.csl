@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0" demote-non-dropping-particle="never">
+<style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0.1" demote-non-dropping-particle="never">
   <!-- This style was edited with the Visual CSL Editor (http://editor.citationstyles.org/visualEditor/) -->
   <info>
     <title>HTML</title>
@@ -17,20 +17,6 @@
       <name>Simon Kornblith</name>
       <email>simon@simonster.com</email>
     </author>
-    <contributor>
-      <name>Sebastian Karcher</name>
-    </contributor>
-    <contributor>
-      <name>Richard Karnesky</name>
-      <email>karnesky+zotero@gmail.com</email>
-      <uri>http://arc.nucapt.northwestern.edu/Richard_Karnesky</uri>
-    </contributor>
-    <contributor>
-      <name>Curtis M. Humphrey</name>
-    </contributor>
-    <contributor>
-      <name>Bruce D'Arcus</name>
-    </contributor>
     <category citation-format="author-date"/>
     <category field="generic-base"/>
     <summary>A style suitable for referencing citation using HTML tags, which shoudl be applicable to HTML or Markdown documents.</summary>
