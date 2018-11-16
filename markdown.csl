@@ -35,7 +35,7 @@
     <category citation-format="author-date"/>
     <category field="generic-base"/>
     <summary>A style suitable for markdown using internal link targets . On the assumption that Markdown is not used by journals, this meets no journal standards.</summary>
-    <updated>2017-08-01T01:36:31+00:00</updated>
+    <updated>2018-11-16T03:55:12+00:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xml:lang="en">
@@ -264,6 +264,11 @@
       </else-if>
     </choose>
   </macro>
+  <macro name="author-long">
+    <names variable="author">
+      <name/>
+    </names>
+  </macro>
   <citation et-al-min="6" et-al-use-first="1" et-al-subsequent-min="3" et-al-subsequent-use-first="1" disambiguate-add-year-suffix="true" disambiguate-add-names="true" disambiguate-add-givenname="true" collapse="year" givenname-disambiguation-rule="primary-name">
     <sort>
       <key macro="author"/>
@@ -287,6 +292,11 @@
       <group>
         <text variable="citation-label" strip-periods="true" prefix="* &lt;a name=&quot;" suffix="&quot;&gt;"/>
         <text variable="citation-label" suffix="&lt;/a&gt;:"/>
+      </group>
+      <group>
+        <text value=" "/>
+        <names variable="author"/>
+        <text value=" "/>
       </group>
       <group>
         <group delimiter=". " prefix=" ">
