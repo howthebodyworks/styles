@@ -162,7 +162,7 @@
     <names variable="author">
       <name form="short" and="text" delimiter=", " delimiter-precedes-last="never" initialize-with=". "/>
     </names>
-  </macro>  
+  </macro>
   <macro name="volume">
     <text variable="volume" font-weight="bold"/>
   </macro>
@@ -244,7 +244,7 @@
             <text variable="page" prefix=":"/>
           </group>
         </else-if>
-        <else-if type="speech report paper-conference " match="any">
+        <else-if type="speech report paper-conference" match="any">
           <choose>
             <if variable="event">
               <text variable="event" suffix=". "/>

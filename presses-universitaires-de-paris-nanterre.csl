@@ -26,22 +26,10 @@
       <term name="ordinal-03">e</term>
       <term name="ordinal-04">e</term>
       <term name="cited">op.&#160;cit.</term>
-      <term name="page" form="short">
-        <single>p.</single>
-        <multiple>p.</multiple>
-      </term>
-      <term name="editor" form="short">
-        <single>éd.</single>
-        <multiple>éd.</multiple>
-      </term>
-      <term name="container-author" form="short">
-        <single>dir.</single>
-        <multiple>dir.</multiple>
-      </term>
-      <term name="in">
-        <single>dans</single>
-        <multiple>dans</multiple>
-      </term>
+      <term name="page" form="short">p.</term>
+      <term name="editor" form="short">éd.</term>
+      <term name="container-author" form="short">dir.</term>
+      <term name="in">dans</term>
     </terms>
   </locale>
   <macro name="author">
@@ -56,11 +44,10 @@
       </if>
       <else-if variable="editorial-director">
         <names variable="editorial-director">
-          <label prefix=" (" suffix=") "/>
           <name form="long" sort-separator=" " delimiter=", " and="text" delimiter-precedes-last="never" name-as-sort-order="all" font-style="normal">
             <name-part name="family" font-variant="small-caps"/>
           </name>
-          <label form="short"/>
+          <label form="short" prefix="&#160;(" suffix=")"/>
         </names>
       </else-if>
       <else-if variable="editor">
